@@ -22,7 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'))); // __dirname is the path to the project directory
 
 app.use('/', index);
 app.use('/users', users);
@@ -58,8 +58,6 @@ app.use(function(err, req, res, next) {
  *  . 구현대상이 되는 기능은 post를 사용해서 insert를 하는게 맞고, put을 써서 update를 구현
  */
 
-//  
-
 /*  
  * JNDI 를 사용해 광양 NRTP PPAS DB에 접속
  * - 각 RTP 서버의 JNDI 정보 관리
@@ -72,7 +70,7 @@ app.use(function(err, req, res, next) {
  * 
  */
 request({  
-  url : 'https://maps.googleapis.com/maps/api/geocode/json?address=lake%20street%20boston',
+  url : 'https://jsonplaceholder.typicode.com/posts',
   json : true
 }, (error, res, body) => {
   console.log(JSON.stringify(body, undefined, 2));
