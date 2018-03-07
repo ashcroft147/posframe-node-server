@@ -7,14 +7,11 @@ var bodyParser = require('body-parser');
 const request = require('request');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -25,7 +22,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // __dirname is the path to the project directory
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,7 +43,7 @@ app.use(function(err, req, res, next) {
 
 
 /* 
- * title : sync nrtp with rtp
+ * title : 
  */
 
 /*  
@@ -73,7 +69,7 @@ request({
   url : 'https://jsonplaceholder.typicode.com/posts',
   json : true
 }, (error, res, body) => {
-  console.log(JSON.stringify(body, undefined, 2));
+  // console.log(JSON.stringify(body, undefined, 2));
 });
 
 module.exports = app;
