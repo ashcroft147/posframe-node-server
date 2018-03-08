@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const ppas = require('../ppas/index');
 
  /* 
   * A급 항목
@@ -10,6 +11,7 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
   console.log(JSON.stringify(req.body, undefined, 2));
   console.log(req.body.std_item_snum);
+  ppas.log();
   res.send({
     responseMessage: 'gradeA success', 
     requestMethod: 'POST'

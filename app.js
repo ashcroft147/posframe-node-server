@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
 
-var gradeA = require('./routes/data-dictionary/gradeA');
-var gradeB = require('./routes/data-dictionary/gradeB');
+var gradeA = require('./routes/data-dictionary/grade_a');
+var gradeB = require('./routes/data-dictionary/grade_b');
 var app = express();
 
 // view engine setup
