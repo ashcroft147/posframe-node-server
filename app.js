@@ -6,7 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
 
-var index = require('./routes/index');
+var gradeA = require('./routes/data-dictionary/gradeA');
+var gradeB = require('./routes/data-dictionary/gradeB');
 var app = express();
 
 // view engine setup
@@ -21,7 +22,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); // __dirname is the path to the project directory
 
-app.use('/', index);
+/*  
+ * Receive Restful API from TC
+ * - http methods to be implemented : post(new), put(new or update), delete
+ * - put or post : https://1ambda.github.io/javascripts/rest-api-put-vs-post/
+ *  . put 과 post 는 idempotent 의 성질에 따른 사용성의 차이가 있다. 
+ *  . 구현대상이 되는 기능은 post를 사용해서 insert를 하는게 맞고, put을 써서 update를 구현
+ */
+app.use('/data-dictionary/grade/a', gradeA);
+app.use('/data-dictionary/grade/b', gradeB);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -42,22 +51,9 @@ app.use(function(err, req, res, next) {
 });
 
 
-/* 
- * title : 
- */
 
-/*  
- * Receive Restful API from TC
- * - http methods to be implemented : post(new), put(new or update), delete
- * - put or post : https://1ambda.github.io/javascripts/rest-api-put-vs-post/
- *  . put 과 post 는 idempotent 의 성질에 따른 사용성의 차이가 있다. 
- *  . 구현대상이 되는 기능은 post를 사용해서 insert를 하는게 맞고, put을 써서 update를 구현
- */
 
-/*  
- * JNDI 를 사용해 광양 NRTP PPAS DB에 접속
- * - 각 RTP 서버의 JNDI 정보 관리
- */
+
 
  /*  
  * RESTful API를 사용하여 http request 전송
@@ -65,11 +61,12 @@ app.use(function(err, req, res, next) {
  * - request 모듈을 사용한 request method 작성
  * 
  */
+/*
 request({  
   url : 'https://jsonplaceholder.typicode.com/posts',
   json : true
 }, (error, res, body) => {
   // console.log(JSON.stringify(body, undefined, 2));
-});
+});*/
 
 module.exports = app;
