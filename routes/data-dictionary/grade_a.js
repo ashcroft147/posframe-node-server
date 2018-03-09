@@ -42,14 +42,14 @@ router.post('/', function(req, res, next) {
   // 3. get query string
   var sqlStr = sqlMap.get('insert-standard-if');
 
-  console.log(sqlStr);
+  var formattedSqlStr = sqlStr.replace(/\r|\n|\t/g, '');
 
   // ppasDB로부터 connect method 호출
   ppasdb.connect((err, client, done) => {
     // done();
   });
 
-  ppasdb.query(sqlStr, [], (err, result) => {
+  ppasdb.query(formattedSqlStr, [], (err, result) => {
     if (err) {
       console.log('error ::' + err.stack)
     } else {
