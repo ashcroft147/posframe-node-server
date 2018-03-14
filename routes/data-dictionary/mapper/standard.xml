@@ -3,4 +3,7 @@
 	<insert-standard-if>
 		select * FROM possfma.tb_s02_standard_if limit 5
 	</insert-standard-if>
+	<update-standard-if>
+		select * FROM possfma.tb_s02_standard_if limit 10
+	</update-standard-if>
 </query>

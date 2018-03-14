@@ -56,13 +56,17 @@ router.post('/', function(req, res, next) {
       console.log('res ::' + JSON.stringify(result.rows[0], undefined, 2));
     }
     
-    // res.status(200).send(result.rows);
+    res.status(200).send(result.rows);
   });
 
 });
 
 router.put('/:snum', function(req, res, next) {
-  res.send({
+  var snum = req.params.snum;
+
+  console.log(snum);
+
+  res.status(200).send({
     responseMessage: 'gradeA success', 
     requestMethod: 'PUT'
   });
