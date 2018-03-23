@@ -49,16 +49,16 @@ router.get('/', function(req, res, next) {
                 }
                 else {
                     value = cell.value;
-                    resultrow[0] = key;
-                    resultrow[1] = value;
+                    resultrow = [key, value];
                     resultrows.push(resultrow);
+                    resultrow = [];
                 }
-                console.log(resultrow[0] + "," + resultrow[1]);
+                //console.log(resultrow[0] + "," + resultrow[1]);
             });
 
             // add row to rows
-            
         });
+        console.log(resultrows);
         console.log(resultrows.length);
         resultsheet.addRows(resultrows);
     }, (reason) => {
@@ -68,20 +68,6 @@ router.get('/', function(req, res, next) {
     }).then(() => {
         console.log("Write is done !!")
     })
-
-    // json 
-    /*
-    [
-        {
-            "seq" : 1,
-            "name" : "후판생산량 상세",
-            "value" : [1,2,3,4,5,6,7]
-        },
-        {}
-    ]
-
-
-    */
 
     res.status(200).render('excel', {message: 'success'});
 });

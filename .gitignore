@@ -9,6 +9,9 @@
 # production
 /build
 
+# static file
+/public/xlsx
+
 # misc
 .DS_Store
 .env.local
