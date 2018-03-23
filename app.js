@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
 
+var excel = require('./routes/excel/index');
 var gradeA = require('./routes/data-dictionary/grade_a');
 var gradeB = require('./routes/data-dictionary/grade_b');
 var app = express();
@@ -29,6 +30,8 @@ app.use(express.static(path.join(__dirname, 'public'))); // __dirname is the pat
  *  . put 과 post 는 idempotent 의 성질에 따른 사용성의 차이가 있다. 
  *  . 구현대상이 되는 기능은 post를 사용해서 insert를 하는게 맞고, put을 써서 update를 구현
  */
+
+app.use('/xlsx', excel);
 app.use('/data-dictionary/grade/a', gradeA);
 app.use('/data-dictionary/grade/b', gradeB);
 
