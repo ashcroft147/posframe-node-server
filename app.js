@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const request = require('request');
 
+var two = require('./routes/two/index');
+var test = require('./routes/test/index');
 var excel = require('./routes/excel/index');
 var gradeA = require('./routes/data-dictionary/grade_a');
 var gradeB = require('./routes/data-dictionary/grade_b');
@@ -31,6 +33,8 @@ app.use(express.static(path.join(__dirname, 'public'))); // __dirname is the pat
  *  . 구현대상이 되는 기능은 post를 사용해서 insert를 하는게 맞고, put을 써서 update를 구현
  */
 
+app.use('/two', two);
+app.use('/test', test);
 app.use('/xlsx', excel);
 app.use('/data-dictionary/grade/a', gradeA);
 app.use('/data-dictionary/grade/b', gradeB);
@@ -53,7 +57,6 @@ app.use(function(err, req, res, next) {
   //res.render('error');
   res.send({ status : err.status || 500});
 });
-
 
  /*  
  * RESTful API를 사용하여 http request 전송
